@@ -32,10 +32,10 @@ const Cart = (props) => {
             <br />
             <h5>Items ordered : {cart.length}</h5>
             <br />
-            <p>Product price : ${valueFixed(total)}</p>
-            <p>Shipping cost : ${shipping}</p>
-            <p>Vat : {valueFixed(vat)}</p>
-            <p> Total Price : ${valueFixed(grandTotal)}</p>
+            <div><p>Product price</p> <p>: ${valueFixed(total)}</p></div>
+            <div><p>Shipping cost </p> <p>: ${shipping}</p></div>
+            <div><p>Vat </p> <p>: {valueFixed(vat)}</p></div>
+            <div><p> Total Price</p> <p>: ${valueFixed(grandTotal)}</p></div>
         </div>
     );
 };
