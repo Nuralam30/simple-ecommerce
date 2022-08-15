@@ -2,7 +2,7 @@ import React from 'react';
 import './Review.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { getDatabaseCart } from '../../utilities/databaseManager';
+import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
 import fakeData from './../../fakeData/index';
 import ReviewItem from './../ReviewItem/ReviewItem';
 
@@ -21,11 +21,24 @@ const Review = () => {
         });
         setCart(cartProducts)
     }, [])
+
+    const removeItem  = (productKey) =>{
+        console.log(productKey+ " item removed")
+        const newCart = cart.filter( pd => pd.key !== productKey);
+        setCart(newCart);
+        removeFromDatabaseCart(productKey)
+    }
+
     return (
         <div className='order-review'>
             <h1> Order review : {cart.length}</h1>
             {
-                cart.map( pd => <ReviewItem key={pd.key} product={pd}></ReviewItem>)
+                cart.map( pd => <ReviewItem 
+                    key={pd.key} 
+                    product={pd}
+                    removeItem={removeItem}
+                    >
+                    </ReviewItem>)
             }
         </div>
     );

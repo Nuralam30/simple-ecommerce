@@ -4,7 +4,7 @@ import './ReviewItem.css';
 const ReviewItem = (props) => {
 
     // console.log(props.product)
-    const { name, img, seller, price, quantity } = props.product;
+    const { name, img, seller, price, quantity, key } = props.product;
     return (
         <div className='product'>
             <div className='product-image'>
@@ -18,7 +18,11 @@ const ReviewItem = (props) => {
                 <br />
                 <p>Quantity : {quantity}</p>
                 <br />
-                <button className='main-button'>Remove</button>
+                <button 
+                className='main-button'
+                onClick={() => props.removeItem(key)}>
+                    Remove
+                </button>
             </div>
         </div>
     );
