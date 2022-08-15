@@ -1,18 +1,29 @@
 .cart-info{
-    padding: 10px 20px;
+    padding: 10px 30px;
 }
 .cart-info h3{
     font-size: 1.4rem;
 }
 .cart-info h5{
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 500;
 }
 .cart-info div{
     display: flex;
 }
-.cart-info div p{
-    width: 60%;
+.cart-info p{
+    font-weight: 500;
+}
+.cart-info div p:first-child{
+    width: 55%;
     text-align: left;
+}
+.total-price p{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #af4040;
+}
+.cart-info .main-button{
+    width: 100%;
 }
 

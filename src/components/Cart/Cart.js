@@ -34,8 +34,10 @@ const Cart = (props) => {
             <br />
             <div><p>Product price</p> <p>: ${valueFixed(total)}</p></div>
             <div><p>Shipping cost </p> <p>: ${shipping}</p></div>
-            <div><p>Vat </p> <p>: {valueFixed(vat)}</p></div>
-            <div><p> Total Price</p> <p>: ${valueFixed(grandTotal)}</p></div>
+            <div><p>Vat </p> <p>: ${valueFixed(vat)}</p></div>
+            <div className='total-price'><p> Total Price</p> <p>: ${valueFixed(grandTotal)}</p></div>
+            <br />
+            <button className="main-button">Review Order</button>
         </div>
     );
 };
