@@ -16,7 +16,7 @@ const Product = (props) => {
                 <h4 className='product-name'><Link to={"/product/"+key}>{name}</Link></h4>
                 <br />
                 <p><small>by : {seller}</small></p>
-                <p>${price}</p>
+                <p>price : ${price}</p>
                 <p><small>Only {stock} left in stock - Order soon</small></p>
 
                 { props.showAddToCart && <button onClick={() => {

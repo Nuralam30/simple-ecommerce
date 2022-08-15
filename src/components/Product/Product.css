@@ -11,6 +11,9 @@
 .product-image{
     padding-right: 20px;
 }
+.product p{
+    line-height: 24px;
+}
 .main-button{
     background-color: goldenrod;
     font-size: 1rem;
