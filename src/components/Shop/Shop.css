@@ -1,6 +1,6 @@
 .shop-container{
     display: flex;
-    margin-left: 100px;
+    padding: 20px 80px;
 }
 .product-container{
     width: 75%;
