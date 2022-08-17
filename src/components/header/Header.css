@@ -8,6 +8,9 @@
     background-color: black;
     line-height: 40px;
     font-size: 20px;
+    display: flex;
+    padding: 0px 100px;
+    position: relative;
 }
 nav a{
     text-decoration: none;
@@ -17,4 +20,10 @@ nav a{
 }
 nav a:hover{
     background-color: gray;
+}
+
+.cart-icon{
+    margin: 0px auto;
+    color: #fff;
+    cursor: pointer;
 }
