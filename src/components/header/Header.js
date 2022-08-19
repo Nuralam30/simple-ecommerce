@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-import logo from '../../images/logo.png'
+import logo from '../../images/logo.png';
 import '../header/Header.css';
 
 const Header = () => {

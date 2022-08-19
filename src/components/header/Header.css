@@ -24,6 +24,10 @@ nav a:hover{
 
 .cart-icon{
     margin: 0px auto;
+    padding: 5px;
     color: #fff;
     cursor: pointer;
+}
+.cart-icon a{
+    padding: 5px;
 }
