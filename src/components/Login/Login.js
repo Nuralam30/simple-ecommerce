@@ -4,146 +4,149 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, FacebookAuthProvider } from 'firebase/auth';
 import firebaseConfig from './firebase.config';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../App';
 
 const app = initializeApp(firebaseConfig);
 
 function Login() {
 
-  const googleProvider = new GoogleAuthProvider();
-  const fbProvider = new FacebookAuthProvider();
-  const [newUser, setNewUser] = useState(false)
-  const [ user, setUser ] = useState({
-    isSignedIn : false,
-    name : '',
-    email : '',
-    password : '',
-    userImage : '',
-    text : '',
-    error : '',
-    success : false
-  });
-
-  const handleSignIn = () =>{
-    const auth = getAuth();
-    signInWithPopup(auth, googleProvider)
-    .then(res => {
-      const { displayName, email, photoURL} = res.user;
-      const signedInUser = {
-        isSignedIn : true,
-        name : displayName,
-        email : email,
-        userImage : photoURL
-      }
-      setUser(signedInUser)
-    })
-    .catch( err => console.log(err))
-  }
-
-  const handleSignOut = () =>{
-    const auth = getAuth()
-    signOut(auth)
-    .then(res => {
-      const signedOutUser = {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const googleProvider = new GoogleAuthProvider();
+    const fbProvider = new FacebookAuthProvider();
+    const [newUser, setNewUser] = useState(false)
+    const [ user, setUser ] = useState({
         isSignedIn : false,
         name : '',
         email : '',
-        userImage : ''
-      }
-      setUser(signedOutUser)
-    })
-    .catch( err => console.log(err))
-  } 
-
-  const handleFbSignIn = () =>{
-    const auth = getAuth();
-    signInWithPopup(auth, fbProvider)
-      .then((result) => {
-        
-        const user = result.user;
-        console.log(user)
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage)
-      });
-  }
-
-  const handleBlur = (e) =>{
-    let isFieldValid = true;
-    if(e.target.name === 'email'){
-      isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
-    }
-    if(e.target.name === 'password'){
-      const passLength = e.target.value.length > 8;
-      const isPasswordValid = /\d{1}/.test(e.target.value);
-      isFieldValid = passLength && isPasswordValid;
-    }
-    if(isFieldValid){
-      const newUserInfo = {...user};
-      newUserInfo[e.target.name] = e.target.value;
-      setUser(newUserInfo)
-    }
-  }
-
-  const handleText = () =>{
-    const newUserInfo = {...user};
-    newUserInfo.text = true;
-    setUser(newUserInfo);
-  }
-  
-  const handleSubmit = (e) =>{
-    if(newUser && user.email && user.password){
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, user.email, user.password)
-      .then( res =>{
-        const newUserInfo = {...user};
-        newUserInfo.error = '';
-        newUserInfo.success = true;
-        setUser(newUserInfo);
-        updateUserInfo(user.name)
-      })
-      .catch( err => {
-        var errMessage = err.message;
-        const newUserInfo = {...user};
-        newUserInfo.error = errMessage;
-        newUserInfo.success = false;
-        setUser(newUserInfo);
-      })
-    }
-    if(!newUser && user.email && user.password){
-      const auth = getAuth();
-      signInWithEmailAndPassword(auth, user.email, user.password)
-      .then(res =>{
-        const userSignIn = {...user};
-        userSignIn.error = '';
-        userSignIn.success = true;
-        setUser(userSignIn);
-        console.log('user info', res.user)
-      })
-      .catch(err =>{
-        var errMessage = err.message;
-        const userSignIn = {...user};
-        userSignIn.error = errMessage;
-        userSignIn.success = false;
-        setUser(userSignIn);
-      })
-    }
-    e.preventDefault();
-  }
-
-  const updateUserInfo = (name) =>{
-    const auth = getAuth();
-    updateProfile(auth.currentUser, {
-      displayName : name
-    })
-    .then(res => {
-      console.log('user info updated successfully');
-    })
-    .catch((err) => {
-      const errMessage = err.message;
-      console.log(errMessage)
+        password : '',
+        userImage : '',
+        text : '',
+        error : '',
+        success : false
     });
-  }
+
+    const handleSignIn = () =>{
+        const auth = getAuth();
+        signInWithPopup(auth, googleProvider)
+        .then(res => {
+        const { displayName, email, photoURL} = res.user;
+        const signedInUser = {
+            isSignedIn : true,
+            name : displayName,
+            email : email,
+            userImage : photoURL
+        }
+        setUser(signedInUser)
+        })
+        .catch( err => console.log(err))
+    }
+
+    const handleSignOut = () =>{
+        const auth = getAuth()
+        signOut(auth)
+        .then(res => {
+        const signedOutUser = {
+            isSignedIn : false,
+            name : '',
+            email : '',
+            userImage : ''
+        }
+        setUser(signedOutUser)
+        })
+        .catch( err => console.log(err))
+    } 
+
+    const handleFbSignIn = () =>{
+        const auth = getAuth();
+        signInWithPopup(auth, fbProvider)
+        .then((result) => {
+            
+            const user = result.user;
+            console.log(user)
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            console.log(errorMessage)
+        });
+    }
+
+    const handleBlur = (e) =>{
+        let isFieldValid = true;
+        if(e.target.name === 'email'){
+        isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
+        }
+        if(e.target.name === 'password'){
+        const passLength = e.target.value.length > 8;
+        const isPasswordValid = /\d{1}/.test(e.target.value);
+        isFieldValid = passLength && isPasswordValid;
+        }
+        if(isFieldValid){
+        const newUserInfo = {...user};
+        newUserInfo[e.target.name] = e.target.value;
+        setUser(newUserInfo)
+        }
+    }
+
+    const handleText = () =>{
+        const newUserInfo = {...user};
+        newUserInfo.text = true;
+        setUser(newUserInfo);
+    }
+    
+    const handleSubmit = (e) =>{
+        if(newUser && user.email && user.password){
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, user.email, user.password)
+        .then( res =>{
+            const newUserInfo = {...user};
+            newUserInfo.error = '';
+            newUserInfo.success = true;
+            setUser(newUserInfo);
+            updateUserInfo(user.name)
+        })
+        .catch( err => {
+            var errMessage = err.message;
+            const newUserInfo = {...user};
+            newUserInfo.error = errMessage;
+            newUserInfo.success = false;
+            setUser(newUserInfo);
+        })
+        }
+        if(!newUser && user.email && user.password){
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, user.email, user.password)
+        .then(res =>{
+            const userSignIn = {...user};
+            userSignIn.error = '';
+            userSignIn.success = true;
+            setUser(userSignIn);
+            setLoggedInUser(userSignIn)
+        })
+        .catch(err =>{
+            var errMessage = err.message;
+            const userSignIn = {...user};
+            userSignIn.error = errMessage;
+            userSignIn.success = false;
+            setUser(userSignIn);
+        })
+        }
+        e.preventDefault();
+    }
+
+    const updateUserInfo = (name) =>{
+        const auth = getAuth();
+        updateProfile(auth.currentUser, {
+        displayName : name
+        })
+        .then(res => {
+        console.log('user info updated successfully');
+        })
+        .catch((err) => {
+        const errMessage = err.message;
+        console.log(errMessage)
+        });
+    }
 
 
   return (
