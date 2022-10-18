@@ -2,11 +2,12 @@ import React from 'react';
 import './Review.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { getDatabaseCart, processOrder, removeFromDatabaseCart } from '../../utilities/databaseManager';
+import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
 import fakeData from './../../fakeData/index';
 import ReviewItem from './../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
-import thankYou from '../../images/giphy.gif'
+import thankYou from '../../images/giphy.gif';
+import { useNavigate } from 'react-router-dom';
 
 const Review = () => {
 
@@ -25,11 +26,9 @@ const Review = () => {
         setCart(cartProducts)
     }, [])
 
-    const orderAdded = () =>{
-        setCart([]);
-        setOrderPlaced(true)
-        processOrder();
-        // console.log('order placed')
+    const navigate = useNavigate();
+    const handleOrderCheckout = () =>{
+        navigate('/shipment');
     }
 
     const removeItem = (productKey) => {
@@ -61,7 +60,7 @@ const Review = () => {
             </div>
             <div className="cart-container">
                 <Cart cart={cart}>
-                    <button onClick={orderAdded} className='main-button'>Place Order</button>
+                    <button onClick={handleOrderCheckout} className='main-button'>Order Checkout</button>
                 </Cart>
             </div>
         </div>

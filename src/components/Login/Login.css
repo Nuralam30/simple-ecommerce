@@ -1,0 +1,37 @@
+.Login {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Login button{
+    padding: 6px 10px;
+    font-size: 18px;
+    background-color: #6ff396;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  
+  .Login form input {
+    padding: 5px 10px;
+    font-size: 18px;
+  }
+  .pass-text{
+    font-size: 14px;
+    color: red;
+  }
+  .red-text{
+    color: red;
+  }
+  .green-text{
+    color: green;
+  }
+  .error-message{
+    color: red;
+  }
+  .success-message{
+    color: green;
+  }

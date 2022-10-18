@@ -19,7 +19,7 @@ const Product = ({product, addProduct, showAddToCart}) => {
                 <p><small>by : {seller}</small></p>
                 <p>price : ${price}</p>
                 <p><small>Only {stock} left in stock - Order soon</small></p>
-
+                
                 { showAddToCart && <button onClick={() => {
                     addProduct(product)
                 }}
