@@ -19,14 +19,15 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 
-function App() {
+function App(props) {
 
-  const [loggedInUser, setLoggedInUser] = useState();
+  const [loggedInUser, setLoggedInUser] = useState({});
 
   return (
-    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <Header></Header>
+    <UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>
       <Router>
+        <h2>email : {loggedInUser.email}</h2>
+        <Header></Header>
         <Routes>
           <Route path='/' element={<Shop></Shop>}></Route>
           <Route path='/shop' element={<Shop></Shop>}></Route>

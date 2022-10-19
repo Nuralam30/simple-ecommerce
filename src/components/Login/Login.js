@@ -6,12 +6,19 @@ import firebaseConfig from './firebase.config';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const app = initializeApp(firebaseConfig);
 
 function Login() {
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    let { from } = location.state || { from: {pathname: '/shipment'} };
+
+
     const googleProvider = new GoogleAuthProvider();
     const fbProvider = new FacebookAuthProvider();
     const [newUser, setNewUser] = useState(false)
@@ -77,7 +84,7 @@ function Login() {
         isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
         }
         if(e.target.name === 'password'){
-        const passLength = e.target.value.length > 8;
+        const passLength = e.target.value.length > 6;
         const isPasswordValid = /\d{1}/.test(e.target.value);
         isFieldValid = passLength && isPasswordValid;
         }
@@ -121,7 +128,8 @@ function Login() {
             userSignIn.error = '';
             userSignIn.success = true;
             setUser(userSignIn);
-            setLoggedInUser(userSignIn)
+            setLoggedInUser(userSignIn);
+            navigate(from)
         })
         .catch(err =>{
             var errMessage = err.message;

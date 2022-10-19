@@ -26,6 +26,8 @@ const Review = () => {
         setCart(cartProducts)
     }, [])
 
+    
+    // NAVIGATE TO SHIPMENT
     const navigate = useNavigate();
     const handleOrderCheckout = () =>{
         navigate('/shipment');

@@ -3,20 +3,21 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import logo from '../../images/logo.png';
 import '../header/Header.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
         <div className='header'>
             <img src={logo} alt=""/>
             <nav>
-                <a href="/shop">Shop</a>
-                <a href="/review">Order Review</a>
-                <a href="/inventory">Manage Inventory</a>
+                <Link to="/shop" className='nav-link'>Shop</Link>
+                <Link to="/review" className='nav-link'>Order Review</Link>
+                <Link to="/inventory" className='nav-link'>Manage Inventory</Link>
                 
                 <div className="cart-icon">
-                    <a href="/review">
+                    <Link to="/review" className='nav-link'>
                         <FontAwesomeIcon icon={faShoppingCart} />
-                    </a>
+                    </Link>
                 </div>
             </nav>
         </div>
