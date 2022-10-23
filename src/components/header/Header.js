@@ -1,29 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../images/logo.png';
 import '../header/Header.css';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const Header = () => {
 
-    const [dashboard, setDashboard] = useState({
-        isShown : false,
-        display : ''
-    });
+    const [loggedInUser] = useContext(UserContext);
+    const [userDashboard, setUserDashboard] = useState(false)
     const handleUserProfile = () =>{
-        if(dashboard.isShown){
-            const newdashboard = {...dashboard}
-            newdashboard.display = 'block';
-            newdashboard.isShown = false;
-            setDashboard(newdashboard)
-        }
-        if(!dashboard.isShown){
-            const newdashboard = {...dashboard}
-            newdashboard.display = '';
-            newdashboard.isShown = true;
-            setDashboard(newdashboard)
-        }
+        setUserDashboard(!userDashboard) 
     }
     
     return (
@@ -41,11 +29,16 @@ const Header = () => {
                 </div>
 
                 <div className="user-dashboard">
-                    <div className="user-btn">
-                        <FontAwesomeIcon onClick={handleUserProfile} icon={faUser} />
+                    <div className="user-btn" onClick={handleUserProfile}>
+                        {
+                            loggedInUser ? <img src={loggedInUser.userImage} alt="User" />
+                            :
+                            <FontAwesomeIcon icon={faUser} />
+                        }
                     </div>
                     {
-                    <ul className='dashboard-menu' style={dashboard}>
+                    userDashboard &&
+                    <ul className='dashboard-menu' >
                         <li>Profile</li>
                         <li>Log Out</li>
                     </ul>

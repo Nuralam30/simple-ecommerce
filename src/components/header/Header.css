@@ -45,9 +45,11 @@ nav a:hover{
     margin-top: 45px;
     padding: 0;
     list-style: none;
-    display: none;
+    /* display: none; */
 }
 .dashboard-menu li{
+    width: 150px;
+    font-size: 18px;
     color: #fff;
     padding: 3px 20px;
     text-align: left;

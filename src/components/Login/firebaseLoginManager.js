@@ -12,7 +12,6 @@ export const initializeUserLogin = () =>{
 export const handleGoogleSignIn = () =>{
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
-    console.log('Inside ')
     return signInWithPopup(auth, googleProvider)
     .then(res => {
         const { displayName, email, photoURL} = res.user;
