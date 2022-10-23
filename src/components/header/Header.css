@@ -6,7 +6,7 @@
 }
 .header nav{
     background-color: black;
-    line-height: 40px;
+    height: 45px;
     font-size: 20px;
     display: flex;
     padding: 0px 100px;
@@ -16,18 +16,45 @@ nav a{
     text-decoration: none;
     color: white;
     margin-right: 20px;
-    padding: 5px;
+    padding: 8px;
 }
 nav a:hover{
     background-color: gray;
 }
 
-.cart-icon{
-    margin: 0px auto;
-    padding: 5px;
+.cart-icon, .user-btn{
+    margin: 5px auto;
+    padding: 4px;
     color: #fff;
     cursor: pointer;
 }
 .cart-icon a{
     padding: 5px;
 }
+.user-btn{
+    position: absolute;
+    right: 150px;
+    height: 25px;
+    width: 25px;
+    border: 1px solid #838080;
+    border-radius: 50%;
+    background-color: #b8b2b2;
+}
+.dashboard-menu{
+    background-color: black;
+    margin-top: 45px;
+    padding: 0;
+    list-style: none;
+    display: none;
+}
+.dashboard-menu li{
+    color: #fff;
+    padding: 3px 20px;
+    text-align: left;
+    cursor: pointer;
+}
+.dashboard-menu li:hover{
+    background-color: #c02020
+}
+
+
