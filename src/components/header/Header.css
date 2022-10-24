@@ -48,6 +48,7 @@ nav a:hover{
 .userImage{
     width: 45px;
     height: 45px;
+    background-color: #bdb7b7;
     border-radius: 50%;
     overflow: hidden;
 }

@@ -6,7 +6,7 @@ import '../header/Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
-import userImg from '../../images/cv.jpg';
+import defaultUser from '../../images/user.png';
 
 const Header = () => {
 
@@ -38,21 +38,25 @@ const Header = () => {
 
                 <div className="user-dashboard" onMouseLeave={hideDashboard} >
                     <div className="user-btn">
-                        {/* <button className="login-btn" onClick={toggleDashboard}> Login</button> */}
-                        <div className="userImage"><img src={userImg} alt="" /></div>
+                        {
+                            loggedInUser.email ? 
+                            <div className="userImage" onClick={toggleDashboard}>
+                                {
+                                    loggedInUser.userImage ? <img src={loggedInUser.userImage} alt="" />
+                                    : <img src={defaultUser} alt="" />
+                                } 
+                            </div>
+                            : <button className="login-btn" onClick={ () => navigate('/login')}> Login  </button>
+                        }
                     </div>
                     
                     {
-                    userDashboard &&
-                    <ul className='dashboard-menu' >
-                        {
-                            loggedInUser.email && <li>Profile</li>
-                        }
-                        {
-                            loggedInUser.email ? <li onClick={ () => setLoggedInUser({})}>Log Out</li>
-                            : <li onClick={ () => navigate('/login')}>Log In</li>
-                        }
-                    </ul>
+                        userDashboard && loggedInUser.email &&
+                        <ul className='dashboard-menu' >
+                            <li>Profile</li>
+                            <li onClick={ () => setLoggedInUser({})}>Log Out</li>
+                            
+                        </ul>
                     }
                 </div>
             </nav>

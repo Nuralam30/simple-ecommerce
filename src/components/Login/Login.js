@@ -127,13 +127,6 @@ function Login() {
       <p className="error-message">{user.error}</p>
       {user.success && <p className="success-message">User {newUser ? 'created' : 'Logged In'} successfully</p>}
 
-      {
-        user.isSignedIn && <div>
-            <p>Welcome <b> { user.name } </b></p>
-            <p>Your email : { user.email} </p>
-            <img src={user.userImage} alt="" />
-          </div>
-      }
     </div>
   );
 }
