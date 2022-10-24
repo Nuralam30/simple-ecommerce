@@ -16,6 +16,7 @@ import Login from './components/Login/Login';
 import { useState } from 'react';
 import { createContext } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import UserProfile from './components/UserProfile/UserProfile';
 
 export const UserContext = createContext();
 
@@ -36,6 +37,7 @@ function App(props) {
           <Route path='/product/:productKey' element={<ProductDetail></ProductDetail>}></Route>
           <Route path='/shipment' element={ <PrivateRoute redirectTo='/login'><Shipment></Shipment></PrivateRoute>}></Route>
           <Route path='/login' element={ <Login></Login>} ></Route>
+          <Route path='/profile' element={ <UserProfile></UserProfile>} ></Route>
           <Route path='*' element={ <NotFound></NotFound>} ></Route>
         </Routes>
       </Router>

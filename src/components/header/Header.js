@@ -53,7 +53,7 @@ const Header = () => {
                     {
                         userDashboard && loggedInUser.email &&
                         <ul className='dashboard-menu' >
-                            <li>Profile</li>
+                            <li onClick={ () => navigate('/profile')}>Profile</li>
                             <li onClick={ () => setLoggedInUser({})}>Log Out</li>
                             
                         </ul>
