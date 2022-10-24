@@ -6,12 +6,13 @@ import '../header/Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
-import user from '../../images/cv.jpg';
+import userImg from '../../images/cv.jpg';
 
 const Header = () => {
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [userDashboard, setUserDashboard] = useState(false);
+    const navigate = useNavigate();
 
     const toggleDashboard = () =>{
         setUserDashboard(!userDashboard);
@@ -20,7 +21,6 @@ const Header = () => {
         setUserDashboard(false)
     }
 
-    const navigate = useNavigate();
     
     return (
         <div className='header'>
@@ -39,7 +39,7 @@ const Header = () => {
                 <div className="user-dashboard" onMouseLeave={hideDashboard} >
                     <div className="user-btn">
                         {/* <button className="login-btn" onClick={toggleDashboard}> Login</button> */}
-                        <div className="userImage"></div>
+                        <div className="userImage"><img src={userImg} alt="" /></div>
                     </div>
                     
                     {
