@@ -32,7 +32,7 @@ function App(props) {
           <Route path='/' element={<Shop></Shop>}></Route>
           <Route path='/shop' element={<Shop></Shop>}></Route>
           <Route path='/review' element={ <Review></Review>}></Route>
-          <Route path='/inventory' element={ <Inventory></Inventory>} ></Route>
+          <Route path='/inventory' element={ <PrivateRoute redirectTo='/login'><Inventory></Inventory></PrivateRoute>} ></Route>
           <Route path='/product/:productKey' element={<ProductDetail></ProductDetail>}></Route>
           <Route path='/shipment' element={ <PrivateRoute redirectTo='/login'><Shipment></Shipment></PrivateRoute>}></Route>
           <Route path='/login' element={ <Login></Login>} ></Route>

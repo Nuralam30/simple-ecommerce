@@ -1,18 +1,26 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
-import React, { useContext, useState } from 'react';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
 import logo from '../../images/logo.png';
 import '../header/Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 import { UserContext } from '../../App';
+import user from '../../images/cv.jpg';
 
 const Header = () => {
 
-    const [loggedInUser] = useContext(UserContext);
-    const [userDashboard, setUserDashboard] = useState(false)
-    const handleUserProfile = () =>{
-        setUserDashboard(!userDashboard) 
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [userDashboard, setUserDashboard] = useState(false);
+
+    const toggleDashboard = () =>{
+        setUserDashboard(!userDashboard);
     }
+    const hideDashboard = () =>{
+        setUserDashboard(false)
+    }
+
+    const navigate = useNavigate();
     
     return (
         <div className='header'>
@@ -28,19 +36,22 @@ const Header = () => {
                     </Link>
                 </div>
 
-                <div className="user-dashboard">
-                    <div className="user-btn" onClick={handleUserProfile}>
-                        {
-                            loggedInUser ? <img src={loggedInUser.userImage} alt="User" />
-                            :
-                            <FontAwesomeIcon icon={faUser} />
-                        }
+                <div className="user-dashboard" onMouseLeave={hideDashboard} >
+                    <div className="user-btn">
+                        {/* <button className="login-btn" onClick={toggleDashboard}> Login</button> */}
+                        <div className="userImage"></div>
                     </div>
+                    
                     {
                     userDashboard &&
                     <ul className='dashboard-menu' >
-                        <li>Profile</li>
-                        <li>Log Out</li>
+                        {
+                            loggedInUser.email && <li>Profile</li>
+                        }
+                        {
+                            loggedInUser.email ? <li onClick={ () => setLoggedInUser({})}>Log Out</li>
+                            : <li onClick={ () => navigate('/login')}>Log In</li>
+                        }
                     </ul>
                     }
                 </div>
