@@ -41,7 +41,7 @@ function Login() {
     const googleSignIn = () =>{
         handleGoogleSignIn()
         .then(res =>{
-            handleRedirect(res, true)
+            handleRedirect(res, true);
         })
     }
 

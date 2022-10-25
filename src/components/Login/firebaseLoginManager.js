@@ -14,14 +14,16 @@ export const handleGoogleSignIn = () =>{
     const googleProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleProvider)
     .then(res => {
-        const { displayName, email, photoURL} = res.user;
+        const { displayName, email, photoURL, phoneNumber} = res.user;
         const signedInUser = {
             isSignedIn : true,
             name : displayName,
             email : email,
             userImage : photoURL,
-            success : true
+            success : true,
+            phone : phoneNumber
         }
+        console.log(res)
     return signedInUser;
     })
     .catch( err => console.log(err))

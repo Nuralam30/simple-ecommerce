@@ -21,6 +21,11 @@ const Header = () => {
         setUserDashboard(false)
     }
 
+    const handleLogout = () =>{
+        setLoggedInUser({});
+        navigate('/login')
+    }
+
     
     return (
         <div className='header'>
@@ -54,7 +59,9 @@ const Header = () => {
                         userDashboard && loggedInUser.email &&
                         <ul className='dashboard-menu' >
                             <li onClick={ () => navigate('/profile')}>Profile</li>
-                            <li onClick={ () => setLoggedInUser({})}>Log Out</li>
+                            <li>Orders</li>
+                            <li>Reviews</li>
+                            <li onClick={handleLogout}>Log Out</li>
                             
                         </ul>
                     }
