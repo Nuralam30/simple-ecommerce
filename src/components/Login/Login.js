@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,10 +10,16 @@ import { handleFbSignIn, handleGoogleSignIn, handleGoogleSignOut, userSignInForm
 function Login() {
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    const navigate = useNavigate();
     const location = useLocation();
+    const navigate = useNavigate();
 
-    let { from } = location.state || { from: {pathname: '/shipment'} };
+    const [from] = useState(location.state || {}); // <-- cache state locally
+
+    useEffect(() => {
+        navigate(".", { replace: true }); // <-- redirect to current path w/o state
+    }, [navigate]);
+
+
 
 
     const [newUser, setNewUser] = useState(false)

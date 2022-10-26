@@ -23,7 +23,6 @@ export const handleGoogleSignIn = () =>{
             success : true,
             phone : phoneNumber
         }
-        console.log(res)
     return signedInUser;
     })
     .catch( err => console.log(err))

@@ -23,7 +23,6 @@ const Header = () => {
 
     const handleLogout = () =>{
         setLoggedInUser({});
-        navigate('/login')
     }
 
     

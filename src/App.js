@@ -36,8 +36,11 @@ function App(props) {
           <Route path='/inventory' element={ <PrivateRoute redirectTo='/login'><Inventory></Inventory></PrivateRoute>} ></Route>
           <Route path='/product/:productKey' element={<ProductDetail></ProductDetail>}></Route>
           <Route path='/shipment' element={ <PrivateRoute redirectTo='/login'><Shipment></Shipment></PrivateRoute>}></Route>
+          {/* <Route exact element={<PrivateRoute  />} >
+            <Route exact path="/shipment" element={<Shipment />} />
+          </Route> */}
           <Route path='/login' element={ <Login></Login>} ></Route>
-          <Route path='/profile' element={ <UserProfile></UserProfile>} ></Route>
+          <Route path='/profile' element={ <PrivateRoute redirectTo='/login'><UserProfile></UserProfile></PrivateRoute>} ></Route>
           <Route path='*' element={ <NotFound></NotFound>} ></Route>
         </Routes>
       </Router>
