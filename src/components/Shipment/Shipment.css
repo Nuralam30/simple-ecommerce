@@ -1,0 +1,15 @@
+.shipment-info{
+    padding: 10px 100px;
+    display: flex;
+}
+.shipment-user{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.shipment-user input{
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+}
