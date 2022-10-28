@@ -14,7 +14,7 @@ function Login() {
     const location = useLocation();
 
     let { from } = location.state || { from: {pathname: '/'} };
-    console.log(location.state)
+    console.log(location)
 
 
     const [newUser, setNewUser] = useState(false)

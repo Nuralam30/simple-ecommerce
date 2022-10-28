@@ -6,13 +6,13 @@ import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databas
 import fakeData from './../../fakeData/index';
 import ReviewItem from './../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
-import thankYou from '../../images/giphy.gif';
+// import thankYou from '../../images/giphy.gif';
 import { useNavigate } from 'react-router-dom';
 
 const Review = () => {
 
     const [cart, setCart] = useState([]);
-    const [orderPlaced, setOrderPlaced] = useState(false);
+    // const [orderPlaced, setOrderPlaced] = useState(false);
 
     useEffect(() => {
         const savedCart = getDatabaseCart();
@@ -40,10 +40,10 @@ const Review = () => {
         removeFromDatabaseCart(productKey)
     }
 
-    let orderSuccess;
-    if(orderPlaced){
-        orderSuccess = <img src={thankYou} alt="" />
-    }
+    // let orderSuccess;
+    // if(orderPlaced){
+    //     orderSuccess = <img src={thankYou} alt="" />
+    // }
 
     return (
         <div className="order-review">
@@ -56,9 +56,9 @@ const Review = () => {
                     >
                     </ReviewItem>)
                 }
-                {
+                {/* {
                     orderSuccess
-                }
+                } */}
             </div>
             <div className="cart-container">
                 <Cart cart={cart}>
